@@ -35,7 +35,7 @@ public class BasicController {
         return "Hello " + name;
     }
 
-    // http://127.0.0.1:8080/user
+    // http://127.0.0.1:8080/user3
     @RequestMapping("/user")
     @ResponseBody
     public User user() {
