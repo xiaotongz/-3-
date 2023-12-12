@@ -44,11 +44,17 @@ public class LoginCheckFilter implements Filter{
         String[] urls = new String[]{
                 "/user/logout",
                 "/user/login",
-                "/user/register"
+                "/user/register",
+                "/email/sendEmail"
         };
 
         //2、判断本次请求是否需要处理
         boolean check = check(urls, requestURI);
+        if(check){
+            log.info("{}无需处理，可直接放行",requestURI);
+            filterChain.doFilter(servletRequest,servletResponse);
+            return;
+        }
 
         //3.获取请求头中的令牌（token)。
         String jwt = request.getHeader("token");

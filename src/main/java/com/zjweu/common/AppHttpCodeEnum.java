@@ -9,6 +9,7 @@ public enum AppHttpCodeEnum {
     NOT_LOGIN(12,"未登录"),
     // TOKEN50~100
     TOKEN_INVALID(13,"无效的TOKEN"),
+    MAIL_INFO_ERROR(14,"无效的TOKEN"),
     // 参数错误 500~1000
     PARAM_REQUIRE(500,"缺少参数"),
     PARAM_INVALID(501,"无效参数"),
