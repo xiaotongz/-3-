@@ -45,7 +45,8 @@ public class LoginCheckFilter implements Filter{
                 "/user/logout",
                 "/user/login",
                 "/user/register",
-                "/email/sendEmail"
+                "/email/sendEmail",
+                "/common/uploadAvator"
         };
 
         //2、判断本次请求是否需要处理

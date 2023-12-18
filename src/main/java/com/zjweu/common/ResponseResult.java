@@ -15,7 +15,7 @@ public class ResponseResult<T> implements Serializable {
 
     private Integer code;
 
-    private String errorMessage;
+    private String message;
 
     private T data;
 
@@ -30,13 +30,13 @@ public class ResponseResult<T> implements Serializable {
 
     public ResponseResult(Integer code, String msg, T data) {
         this.code = code;
-        this.errorMessage = msg;
+        this.message = msg;
         this.data = data;
     }
 
     public ResponseResult(Integer code, String msg) {
         this.code = code;
-        this.errorMessage = msg;
+        this.message = msg;
     }
 
 
@@ -63,21 +63,21 @@ public class ResponseResult<T> implements Serializable {
         return setAppHttpCodeEnum(enums,enums.getErrorMessage());
     }
 
-    public static ResponseResult errorResult(AppHttpCodeEnum enums, String errorMessage){
-        return setAppHttpCodeEnum(enums,errorMessage);
+    public static ResponseResult errorResult(AppHttpCodeEnum enums, String message){
+        return setAppHttpCodeEnum(enums,message);
     }
 
     public static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums){
         return okResult(enums.getCode(),enums.getErrorMessage());
     }
 
-    private static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums, String errorMessage){
-        return okResult(enums.getCode(),errorMessage);
+    private static ResponseResult setAppHttpCodeEnum(AppHttpCodeEnum enums, String message){
+        return okResult(enums.getCode(),message);
     }
 
     public ResponseResult<?> error(Integer code, String msg) {
         this.code = code;
-        this.errorMessage = msg;
+        this.message = msg;
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ResponseResult<T> implements Serializable {
     public ResponseResult<?> ok(Integer code, T data, String msg) {
         this.code = code;
         this.data = data;
-        this.errorMessage = msg;
+        this.message = msg;
         return this;
     }
 
@@ -107,12 +107,12 @@ public class ResponseResult<T> implements Serializable {
         this.code = code;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getmessage() {
+        return message;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setmessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 
 /**
@@ -21,7 +22,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @Schema(title = "用户类",description = "用户的相关信息")
-public class TbUser implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

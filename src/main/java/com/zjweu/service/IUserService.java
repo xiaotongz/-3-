@@ -1,6 +1,8 @@
 package com.zjweu.service;
 
 import com.zjweu.common.ResponseResult;
+import com.zjweu.dto.LoginTO;
+import com.zjweu.dto.RegistryFormTO;
 
 /**
  * <p>
@@ -12,6 +14,7 @@ import com.zjweu.common.ResponseResult;
  */
 public interface IUserService {
 
-    public ResponseResult login(String email, String passwoed);
+    public ResponseResult login(LoginTO login);
 
+    ResponseResult register(RegistryFormTO registryFormTO);
 }

@@ -1,9 +1,11 @@
-package com.zjweu.entity;
+package com.zjweu.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -16,10 +18,11 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor //生成一个包含所有类字段的构造函数
-public class ToMail implements Serializable {
+public class MailTO implements Serializable {
     /**
      *  邮件接受方
      */
+    @NotNull(message = "邮箱不能为空")
     private String tos;
     /**
      *      邮件主题
