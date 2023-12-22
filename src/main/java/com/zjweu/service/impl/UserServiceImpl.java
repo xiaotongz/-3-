@@ -7,6 +7,7 @@ import com.zjweu.dto.LoginTO;
 import com.zjweu.dto.RegistryFormTO;
 import com.zjweu.exception.CommonException;
 import com.zjweu.exception.UserException;
+import com.zjweu.mapper.DirectoryMapper;
 import com.zjweu.utils.AppJwtUtil;
 import com.zjweu.common.ResponseResult;
 import com.zjweu.entity.User;
@@ -36,6 +37,8 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
     @Autowired
     private RedisUtils redisUtils;
+    @Autowired
+    private DirectoryMapper directoryMapper;
 
 
     @Override
@@ -101,22 +104,28 @@ public class UserServiceImpl implements IUserService {
         String hash = DigestUtils.md5DigestAsHex((password + salt).getBytes());
         user.setPasswordHash(hash);
 
-        //5 插入数据并返回token
+        //5 插入数据
         System.out.println(user);
         int insert = userMapper.insertUser(user);
+        if(insert == 0){
+            throw new UserException("注册失败");
+        }
         this.redisUtils.del(email);
+
+        //6 为该用户创建根目录
         User newUser = userMapper.findByEmail(email);
+        insert =  directoryMapper.addRootDirectory(newUser.getUserId());
+        if(insert == 0){
+            throw new UserException("新建根目录失败");
+        }
+
+        //7 返回token
         String token = AppJwtUtil.getToken(newUser.getUserId().longValue());
         Map<String,Object> map = new HashMap<>();
         map.put("token",token);
         user.setSalt("");
         user.setPasswordHash("");
         map.put("user",user);
-        if(insert > 0){
-            return ResponseResult.okResult(map);
-        }
-        else{
-            throw new UserException("注册失败");
-        }
+        return ResponseResult.okResult(map);
     }
 }

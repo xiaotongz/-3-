@@ -14,6 +14,9 @@ public enum AppHttpCodeEnum {
     REGESTER_EERROR(16,"注册失败"),
     MAIL_INFO_ERROR(17,"邮箱问题"),
     CODE_ERROR(18,"验证码失效或错误"),
+    DIRECTORY_ERROR(19,"有关目录问题失败"),
+    FILE_ERROE(20,"有关文件问题"),
+    PERMISSION_DENY(20,"权限不足"),
     // 参数错误 500~1000
     PARAM_REQUIRE(500,"缺少参数"),
     PARAM_INVALID(501,"无效参数"),
